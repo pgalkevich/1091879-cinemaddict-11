@@ -1,8 +1,5 @@
 import {createFilmCardTemplate} from "./film-card";
-import {createShowMoreBtnTemplate} from "./show-more-button";
 import {generateFilm} from "../mock/film";
-
-const FILM_COUNT = 5;
 
 export const createFilmsSectionTemplate = () => {
   return (
