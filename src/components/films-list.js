@@ -1,19 +1,22 @@
 import {createElement} from "../utilities";
 
-const createFooterStatisticsTemplate = (filmsCount) => {
+const createFilmsListTemplate = () => {
   return (
-    `<p>${filmsCount} movies inside</p>`
+    `<section class="films-list">
+      <div class="films-list__container">
+      </div>
+    </section>`
   );
 };
 
-export default class FooterStat {
-  constructor(filmsCount) {
-    this._filmsCount = filmsCount;
+export default class FilmsList {
+  constructor(film) {
+    this._film = film;
     this._element = null;
   }
 
   getTemplate() {
-    return createFooterStatisticsTemplate(this._filmsCount);
+    return createFilmsListTemplate(this._film);
   }
 
   getElement() {

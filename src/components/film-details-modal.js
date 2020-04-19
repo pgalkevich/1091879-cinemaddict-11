@@ -1,4 +1,5 @@
 import {MONTH_NAMES} from "../constants";
+import {createElement} from "../utilities";
 
 const formatReleaseDate = (date) => {
   const day = date.getDate();
@@ -64,7 +65,27 @@ const createEmojiListItemTemplate = (value) => {
   );
 };
 
-export const createFilmDetailsModalTemplate = (filmObj) => {
+const createDetailsControlTemplate = (controlName) => {
+  let label = ``;
+  switch (controlName) {
+    case `watchlist`:
+      label = `Add to watchlist`;
+      break;
+    case `watched`:
+      label = `Already watched`;
+      break;
+    case `favorites`:
+      label = `Add to favorites`;
+      break;
+  }
+  return (
+    `<input type="checkbox" class="film-details__control-input visually-hidden" id="${controlName}" name="${controlName}">
+    <label for="${controlName}" class="film-details__control-label film-details__control-label--${controlName}">${label}</label>`
+
+  );
+};
+
+const createFilmDetailsModalTemplate = (filmObj) => {
   const {title, rating, date, duration, genres, posterLink, description, comments, ageLimit, director, writers, actors, country} = filmObj;
 
   return (
@@ -110,14 +131,9 @@ export const createFilmDetailsModalTemplate = (filmObj) => {
           </div>
 
           <section class="film-details__controls">
-            <input type="checkbox" class="film-details__control-input visually-hidden" id="watchlist" name="watchlist">
-            <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
-
-            <input type="checkbox" class="film-details__control-input visually-hidden" id="watched" name="watched">
-            <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
-
-            <input type="checkbox" class="film-details__control-input visually-hidden" id="favorite" name="favorite">
-            <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>
+            ${createDetailsControlTemplate(`watchlist`)}
+            ${createDetailsControlTemplate(`watched`)}
+            ${createDetailsControlTemplate(`favorites`)}
           </section>
         </div>
 
@@ -151,3 +167,24 @@ export const createFilmDetailsModalTemplate = (filmObj) => {
   );
 };
 
+export default class FilmDetailsCard {
+  constructor(film) {
+    this._film = film;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createFilmDetailsModalTemplate(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
