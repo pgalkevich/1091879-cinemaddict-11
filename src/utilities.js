@@ -12,7 +12,7 @@ function getRandomDate(start, end) {
   return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 }
 
-export const getRandomListFromArray = (array) => {
+const getRandomListFromArray = (array) => {
   const localArr = array.slice();
   const resultArr = [];
   const count = getRandomIntegerNumber(0, localArr.length);
@@ -24,4 +24,32 @@ export const getRandomListFromArray = (array) => {
   return resultArr;
 };
 
-export {getRandomArrayItem, getRandomIntegerNumber, getRandomDate};
+const createElement = (template) => {
+  const container = document.createElement(`div`);
+  container.innerHTML = template;
+  return container.firstChild;
+};
+
+const renderPosition = {
+  AFTERBEGIN: `afterbegin`,
+  BEFOREEND: `beforeend`,
+};
+
+export const render = (container, element, position = `beforeend`) => {
+  switch (position) {
+    case renderPosition.BEFOREEND:
+      container.append(element);
+      break;
+    case renderPosition.AFTERBEGIN:
+      container.prepend(element);
+      break;
+  }
+};
+export {
+  getRandomArrayItem,
+  getRandomIntegerNumber,
+  getRandomDate,
+  getRandomListFromArray,
+  createElement,
+  renderPosition
+};
