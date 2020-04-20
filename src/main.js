@@ -93,7 +93,6 @@ const renderBoard = (boardComponent, films) => {
   renderFilm(FilmsTopRated.getElement().querySelector(`.films-list__container`), films[1]);
   renderFilm(FilmsMostCommented.getElement().querySelector(`.films-list__container`), films[3]);
   renderFilm(FilmsMostCommented.getElement().querySelector(`.films-list__container`), films[4]);
-
 };
 
 // рендер доски (контейнера для списка фильмов и экстра секций (top rated & most commented))
