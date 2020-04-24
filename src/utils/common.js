@@ -24,32 +24,9 @@ const getRandomListFromArray = (array) => {
   return resultArr;
 };
 
-const createElement = (template) => {
-  const container = document.createElement(`div`);
-  container.innerHTML = template;
-  return container.firstChild;
-};
-
-const renderPosition = {
-  AFTERBEGIN: `afterbegin`,
-  BEFOREEND: `beforeend`,
-};
-
-export const render = (container, element, position = `beforeend`) => {
-  switch (position) {
-    case renderPosition.BEFOREEND:
-      container.append(element);
-      break;
-    case renderPosition.AFTERBEGIN:
-      container.prepend(element);
-      break;
-  }
-};
 export {
   getRandomArrayItem,
   getRandomIntegerNumber,
   getRandomDate,
   getRandomListFromArray,
-  createElement,
-  renderPosition
 };

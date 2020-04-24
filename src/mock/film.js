@@ -1,4 +1,4 @@
-import {getRandomArrayItem, getRandomIntegerNumber, getRandomDate, getRandomListFromArray} from "../utilities";
+import {getRandomArrayItem, getRandomIntegerNumber, getRandomDate, getRandomListFromArray} from "../utils/common";
 import {GENRES, COUNTRIES, DIRECTORS, WRITERS, ACTORS} from "../constants";
 
 const filmTitles = [

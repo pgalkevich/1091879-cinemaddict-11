@@ -1,5 +1,5 @@
 import {MONTH_NAMES} from "../constants";
-import {createElement} from "../utilities";
+import AbstractComponent from "./abstract-component";
 
 const formatReleaseDate = (date) => {
   const day = date.getDate();
@@ -167,24 +167,17 @@ const createFilmDetailsModalTemplate = (filmObj) => {
   );
 };
 
-export default class FilmDetailsCard {
+export default class FilmDetailsCard extends AbstractComponent {
   constructor(film) {
+    super();
     this._film = film;
-    this._element = null;
   }
 
   getTemplate() {
     return createFilmDetailsModalTemplate(this._film);
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
+  setEditBtnClickHandler(handler) {
+    this.getElement().querySelector(`.film-details__close-btn`).addEventListener(`click`, handler);
   }
 }
